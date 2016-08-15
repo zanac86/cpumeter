@@ -11,6 +11,6 @@ rc cpumeter.rc
 cl cpumeter.cpp cpumeter.res /MT /link advapi32.lib user32.lib pdh.lib gdi32.lib
 
 copy cpumeter.exe release\
-erase cpumeter.exe cpumeter.obj
+erase cpumeter.exe cpumeter.obj cpumeter.res
 
 C:\MyPrograms\NSISPortable\App\NSIS\makensis.exe cpumeter.nsi
