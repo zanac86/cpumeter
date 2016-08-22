@@ -1,16 +1,26 @@
 @echo off
 
-set BUILD_DIR=release
+:: build with Microsoft Visual C++ Compiler for Python 2.7
+:: https://www.microsoft.com/en-us/download/details.aspx?id=44266
+::call "%LOCALAPPDATA%\Programs\Common\Microsoft\Visual C++ for Python\9.0\vcvarsall.bat" amd64
 
-erase /F /S /Q *.bak *.orig
-rmdir /S /Q %BUILD_DIR%
-mkdir %BUILD_DIR%
-
+:: build with Microsoft Visual Studio Community 2015
+:: https://www.microsoft.com/ru-ru/download/details.aspx?id=48146
 call "D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
-rc cpumeter.rc
-cl cpumeter.cpp cpumeter.res /MT /link advapi32.lib user32.lib pdh.lib gdi32.lib
 
-copy cpumeter.exe release\
-erase cpumeter.exe cpumeter.obj cpumeter.res
+set PROJECT=cpumeter
 
-C:\MyPrograms\NSISPortable\App\NSIS\makensis.exe cpumeter.nsi
+set BUILD_DIR=release
+rmdir /s /q %BUILD_DIR%
+mkdir %BUILD_DIR%
+pushd %BUILD_DIR%
+
+cl /c /O1 ..\%PROJECT%.cpp /I "..\"
+link %PROJECT%.obj advapi32.lib user32.lib pdh.lib gdi32.lib kernel32.lib /SUBSYSTEM:WINDOWS
+
+:: Nullsoft Scriptable Install System
+:: http://portableapps.com/apps/development/nsis_portable
+if exist %PROJECT%.exe C:\MyPrograms\NSISPortable\App\NSIS\makensis.exe ..\%PROJECT%.nsi
+
+popd
+

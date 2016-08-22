@@ -322,6 +322,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR     lpCmdLine,
                      int       nCmdShow)
+//int main()
 {
     if (app.isAnotherInstanceRunning())
     {
