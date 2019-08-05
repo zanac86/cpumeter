@@ -1,7 +1,7 @@
 @echo off
 
-:: build with Microsoft Visual Studio Community 2017
-call "D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+:: build with Microsoft Visual Studio Community 2019
+call "D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 
 set PROJECT=cpumeter
 set BUILD_DIR=release
