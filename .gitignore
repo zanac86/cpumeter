@@ -1,0 +1,6 @@
+release
+*.o
+*.bak
+*.orig
+*.exe
+*.autosave
